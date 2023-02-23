@@ -1,3 +1,8 @@
+from kivy.config import Config
+Config.set("graphics", "resizable", 0)
+Config.set("graphics", "width", 950)
+Config.set("graphics", "height", 600)
+
 from kivymd.app import MDApp
 from kivymd.theming import ThemeManager
 
