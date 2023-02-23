@@ -1,5 +1,4 @@
 from kivymd.uix.boxlayout import MDBoxLayout
-from kivy.lang import Builder
 from kivymd.uix.button import MDTextButton, MDIconButton
 from kivymd.uix.screen import MDScreen
 
