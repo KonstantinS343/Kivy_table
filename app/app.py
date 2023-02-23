@@ -1,11 +1,19 @@
 from kivymd.app import MDApp
 from kivymd.theming import ThemeManager
 
-class ViewApp(MDApp):
+from app.manage_services.controller import Contorller
+
+class App(MDApp):
     theme_cls = ThemeManager()
     title = 'Таблица'
     
     def build(self):
-        return super().build()
+        self.theme_cls.theme_style_switch_animation = True
+        self.theme_cls.theme_style_switch_animation_duration = 0.8
+        controller = Contorller(self)
+        return controller.get_root_view()
     
-ViewApp().run()
+    def switch_theme_style(self, *args):
+        self.theme_cls.theme_style = (
+            "Dark" if self.theme_cls.theme_style == "Light" else "Light"
+        )
