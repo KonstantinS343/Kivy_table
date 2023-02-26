@@ -2,6 +2,11 @@ from kivymd.uix.button import MDTextButton, MDIconButton
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
 
+def add_new_line_in_table(controller_object):
+    def callback(x):
+        controller_object.open_add_window()
+    return callback
+
 def tool_bar(controller_object: object, app_object: object):
     return MDScreen(
             MDBoxLayout(
@@ -10,6 +15,7 @@ def tool_bar(controller_object: object, app_object: object):
                     pos_hint = {'center_x':0.1 ,'center_y':0.95},
                     padding = [28,10],
                     font_style = 'Button',
+                    on_press = add_new_line_in_table(controller_object)
                 ),
                 MDTextButton(
                     text = 'Удалить запись',

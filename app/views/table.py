@@ -7,17 +7,18 @@ def table(controller: object):
         MDDataTable(
             size_hint=(0.9, 0.93),
             use_pagination=True,
-            check=True,
+            elevation=2,
+            check = True,
             column_data=[
                 ("ФИО студента", dp(90)),
-                ("Курс", dp(30)),
-                ("Группа", dp(30)),
-                ("Общее число работ", dp(30)),
-                ("Количество выполненных работ", dp(30)),
-                ("Язык программирования", dp(30)),
+                ("Курс", dp(45)),
+                ("Группа", dp(60)),
+                ("Общее число работ", dp(60)),
+                ("Кол-во выполненных работ", dp(60)),
+                ("Язык программирования", dp(60)),
             ],
             row_data=controller.get_student(),
-            
+        
         ))
     
     
