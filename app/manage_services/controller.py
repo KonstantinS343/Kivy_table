@@ -41,6 +41,7 @@ class Controller:
         self.view.add_dialog.dismiss()
         self.view.close_filter_window()
         if self.view.temp_filter_window:
+            self.list_passed_filter_student = []
             self.view.temp_filter_window.dismiss()
     
     def filter_students(self):
