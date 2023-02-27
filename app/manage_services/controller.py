@@ -1,18 +1,20 @@
 from app.views.view import View
 from app.manage_services.model import Model
 from app.manage_services.validator import Validator
+import time
 
 class Controller:
     def __init__(self, app_object) -> None:
         self.model = Model()
         self.view = View(self, app_object, self.get_student)
         self.list_passed_filter_student = []
+        self.delete_student_list = []
     
     def get_root_view(self):
         return self.view.base_view
     
     def get_student(self):
-        return self.model.get_student_list()
+        return self.model.student_list
     
     def open_add_window(self):
         self.view.open_add_student_window()
@@ -29,7 +31,7 @@ class Controller:
                 'lang':data_from_add_dialog_window.lang.text,
             }
         
-        self.close_add_window()
+        self.close_window()
         data_from_add_dialog_window = self.view.add_dialog.content_cls.ids
         validation = Validator(data=data_from_add_dialog_window)
         validation.validate()
@@ -48,7 +50,7 @@ class Controller:
         self.view.open_filter_student_window()
         
     def pick_filter_data(self, field):
-        set_of_data = set([i[field] for i in self.model.get_student_list()])
+        set_of_data = set([i[field] for i in self.model.student_list])
         return list(set_of_data)
     
     def get_filter_data(self):            
@@ -94,10 +96,20 @@ class Controller:
         self.view.filter_student_dialog.close()
         template_filter = self.get_filter_data()
                 
-        for record in self.model.get_student_list():
+        for record in self.model.student_list:
             if self.pass_filter(record, template_filter):
                 self.list_passed_filter_student.append(record) 
         
         self.view.open_filter_result_window(self.get_filter_stident_list)
+    
+    def delete_rows(self):
+        t1 = time.time()
+        self.model.student_list = [i for i in self.model.student_list if i not in self.delete_student_list]
+        self.view.update_table()
+        self.close_window()
+        print(time.time()-t1)
+        
+    def cheked(self,instance, current_row):
+        self.delete_student_list.append(current_row)
 
         

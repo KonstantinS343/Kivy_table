@@ -12,6 +12,11 @@ def filter_student(controller_object):
         controller_object.filter_students()
     return callback
 
+def delete_row_from_table(controller_object):
+    def callback(*args):
+        controller_object.delete_rows()
+    return callback
+
 def tool_bar(controller_object: object, app_object: object):
     return MDScreen(
             MDBoxLayout(
@@ -27,6 +32,7 @@ def tool_bar(controller_object: object, app_object: object):
                     pos_hint = {'center_x':0.3, 'center_y':0.95},
                     padding = [28,10],
                     font_style = 'Button',
+                    on_press = delete_row_from_table(controller_object)
                 ),
                 MDTextButton(
                     text = 'Найти запись',

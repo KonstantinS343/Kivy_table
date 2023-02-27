@@ -7,6 +7,7 @@ from kivymd.uix.menu import MDDropdownMenu
 from kivy.metrics import dp
 
 from app.views.dialog.handle_dialog_button import hadle_cancel_add_new_student, handle_filter_student
+from app.views.toolbar import delete_row_from_table
 from app.views.table import table
 
 class Filter:
@@ -180,7 +181,7 @@ def show_result_of_filter(controller, get_filter_result):
                 font_size='17',
                 md_bg_color = 'gray',
                 font_style = 'Button',
-                #on_release = handle_filter_student(controller)
+                on_release = delete_row_from_table(controller)
             ),
         ]
     )

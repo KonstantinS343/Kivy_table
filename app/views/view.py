@@ -8,6 +8,7 @@ from app.views.dialog.filter_student_window import Filter, show_result_of_filter
 class View:
     def __init__(self, controller, app_object, get_all_student_function) -> None:
         self.controller = controller
+        self.get_all_student_function = get_all_student_function
         self.temp_filter_window = None
         self.add_dialog = add_new_student(controller)
         self.filter_student_dialog = Filter(controller)
@@ -20,8 +21,9 @@ class View:
         
     def update_table(self):
         self.base_view.remove_widget(self.table)
-        self.table = table(self.controller)
+        self.table = table(self.controller,self.get_all_student_function)
         self.base_view.add_widget(self.table)
+        
     
     def open_filter_student_window(self):
         self.filter_student_dialog.build()

@@ -2,9 +2,9 @@ from kivymd.uix.datatables import MDDataTable
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.metrics import dp
 
-def table(controller: object, function_get_student): 
-    return MDBoxLayout(
-        MDDataTable(
+def table(controller: object, function_get_student):
+    window = MDBoxLayout()
+    table = MDDataTable(
             size_hint=(0.9, 0.93),
             use_pagination=True,
             check = True,
@@ -20,7 +20,10 @@ def table(controller: object, function_get_student):
             ],
             row_data=function_get_student(),
         
-        ))
+        )
+    table.bind(on_check_press = controller.cheked)
+    window.add_widget(table)
+    return window
     
     
     

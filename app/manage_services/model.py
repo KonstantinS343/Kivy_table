@@ -17,9 +17,14 @@ class Model:
                                 student_data['lang'])
         self.__student_list.append(object.create_data_for_table())
         self.save()
-    
-    def get_student_list(self):
+        
+    @property
+    def student_list(self):
         return self.__student_list
+    
+    @student_list.setter
+    def student_list(self, new_list):
+        self.__student_list = new_list
     
     def save(self):
         with open('data.json', 'w') as file:
