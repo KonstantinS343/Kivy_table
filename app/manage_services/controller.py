@@ -7,6 +7,7 @@ class Controller:
     def __init__(self, app_object) -> None:
         self.model = Model()
         self.view = View(self, app_object, self.get_student)
+        self.model.init_view(self.view)
         self.list_passed_filter_student = []
         self.delete_student_list = []
     
@@ -37,7 +38,6 @@ class Controller:
         validation.validate()
         
         self.model.add_to_student_list(student_data=create_student_data())
-        self.view.update_table()
     
     def close_window(self):
         self.view.add_dialog.dismiss()
@@ -104,8 +104,7 @@ class Controller:
     
     def delete_rows(self):
         t1 = time.time()
-        self.model.student_list = [i for i in self.model.student_list if i not in self.delete_student_list]
-        self.view.update_table()
+        self.model.delete(self.delete_student_list)
         self.close_window()
         print(time.time()-t1)
         

@@ -17,18 +17,24 @@ class Model:
                                 student_data['lang'])
         self.__student_list.append(object.create_data_for_table())
         self.save()
+        self.view.update_table()
         
     @property
     def student_list(self):
         return self.__student_list
     
-    @student_list.setter
-    def student_list(self, new_list):
-        self.__student_list = new_list
-    
     def save(self):
         with open('data.json', 'w') as file:
             json.dump(self.__student_list,file,ensure_ascii=False)
+    
+    def delete(self, delete_template):
+        self.__student_list[:] = [i for i in self.__student_list if i not in delete_template]
+        self.view.update_table()
+        with open('data.json', 'w') as file:
+           json.dump(self.__student_list,file,ensure_ascii=False)
+        
+    def init_view(self, view):
+        self.view = view
 
 class StudentModel:
     def __init__(self) -> None:
