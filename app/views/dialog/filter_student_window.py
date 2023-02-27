@@ -91,7 +91,7 @@ class Filter:
             ),
             MDTextField(
                 id = 'not_done_work',
-                hint_text="Кол-во не выполненных работ",
+                hint_text="Кол-во невыполненных работ",
                 font_size='20',
                 helper_text= "Поле должно содержать миниму 1 цифру",
                 helper_text_mode= "on_error"

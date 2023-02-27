@@ -80,7 +80,7 @@ class Controller:
             if template['all_work'] != record[3]:
                 return False
         elif template['not_done_work']:
-            if template['not_done_work'] != record[3]-record[4]:
+            if template['not_done_work'] != str(int(record[3])-int(record[4])):
                 return False
         elif template['do_work']:
             if template['do_work'] != record[4]:
