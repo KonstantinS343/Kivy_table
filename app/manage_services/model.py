@@ -4,6 +4,8 @@ import json
 class Model:
     def __init__(self) -> None:
         self.__student_list: List[List] = []
+        with open('data.json', 'r') as file:
+             self.__student_list = json.load(file)
     
     def add_to_student_list(self, student_data):
         object = StudentModel()

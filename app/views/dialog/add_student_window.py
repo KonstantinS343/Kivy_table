@@ -2,16 +2,7 @@ from kivymd.uix.button import MDFlatButton, MDRaisedButton
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.textfield import MDTextField
-
-def handle_add_new_student(controller):
-    def callback(x):
-        controller.add_student_in_table()
-    return callback
-
-def hadle_cancel_add_new_student(controller):
-    def callback(x):
-        controller.close_add_window()
-    return callback
+from app.views.dialog.handle_dialog_button import handle_add_new_student, hadle_cancel_add_new_student
 
 def add_new_student(controller):
     return MDDialog(

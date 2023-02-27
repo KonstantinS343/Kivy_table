@@ -3,8 +3,13 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
 
 def add_new_line_in_table(controller_object):
-    def callback(x):
+    def callback(*args):
         controller_object.open_add_window()
+    return callback
+
+def filter_student(controller_object):
+    def callback(*args):
+        controller_object.filter_students()
     return callback
 
 def tool_bar(controller_object: object, app_object: object):
@@ -28,7 +33,7 @@ def tool_bar(controller_object: object, app_object: object):
                     pos_hint = {'center_x':0.5, 'center_y':0.95},
                     padding = [28,10],
                     font_style = 'Button',
-
+                    on_press = filter_student(controller_object)
                 ),
             ),
             MDIconButton(
