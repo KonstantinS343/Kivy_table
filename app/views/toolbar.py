@@ -14,7 +14,7 @@ def filter_student(controller_object):
 
 def delete_row_from_table(controller_object):
     def callback(*args):
-        controller_object.delete_rows()
+        controller_object.confirm_delete()
     return callback
 
 def tool_bar(controller_object: object, app_object: object):

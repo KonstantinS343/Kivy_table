@@ -2,6 +2,7 @@ from kivymd.uix.button import MDFlatButton, MDRaisedButton
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.textfield import MDTextField
+
 from app.views.dialog.handle_dialog_button import handle_add_new_student, hadle_cancel_add_new_student
 
 def add_new_student(controller):

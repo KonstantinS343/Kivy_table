@@ -28,7 +28,7 @@ class Model:
             json.dump(self.__student_list,file,ensure_ascii=False)
     
     def delete(self, delete_template):
-        self.__student_list[:] = [i for i in self.__student_list if i not in delete_template]
+        self.__student_list[:] = [i for i in self.__student_list if self.__student_list.index(i) not in delete_template]
         self.view.update_table()
         with open('data.json', 'w') as file:
            json.dump(self.__student_list,file,ensure_ascii=False)
