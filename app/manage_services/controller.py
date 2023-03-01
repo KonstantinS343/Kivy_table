@@ -31,13 +31,15 @@ class Controller:
                 'do_work':data_from_add_dialog_window.do_work.text,
                 'lang':data_from_add_dialog_window.lang.text,
             }
-        
         self.close_add_window()
-        data_from_add_dialog_window = self.view.add_dialog.content_cls.ids
-        validation = Validator(data=data_from_add_dialog_window)
-        validation.validate()
         
-        self.model.add_to_student_list(student_data=create_student_data())
+        data_from_add_dialog_window = self.view.add_dialog.content_cls.ids
+        validation = Validator(data=create_student_data())
+        
+        if not validation.validate():
+            self.view.error_add_student()
+        else:
+            self.model.add_to_student_list(student_data=create_student_data())
     
     def close_add_window(self):
         self.view.add_dialog.dismiss()
@@ -51,8 +53,6 @@ class Controller:
         
     def close_confirm_delete_window(self):
         self.view.confirm_delete_window.dismiss()
-        self.view.update_table()
-        self.delete_student_list = []
     
     def filter_students(self):
         self.view.open_filter_student_window()
@@ -112,16 +112,23 @@ class Controller:
     
     def delete_rows(self):
         t1 = time.time()
+        self.delete_student_list[:] = [self.model.student_list.index(i) for i in self.delete_student_list]
         self.model.delete(self.delete_student_list)
         self.close_confirm_delete_window()
+        self.delete_student_list = []
+        if self.view.temp_filter_window:
+            self.close_result_filter_window()
         print(time.time()-t1)
      
     def cheked(self, instance, current_row):
-        check_row = self.model.student_list.index(current_row)
-        if check_row in self.delete_student_list:
-            self.delete_student_list[:] = [i for i in self.delete_student_list if i != check_row]
+        if current_row in self.delete_student_list:
+            self.delete_student_list.remove(current_row)
         else:
-            self.delete_student_list.append(self.model.student_list.index(current_row))
+            self.delete_student_list.append(current_row)
+        print(self.delete_student_list)
         
     def confirm_delete(self):
         self.view.confirm_delete(len(self.delete_student_list), self)
+        
+    def close_error_window(self):
+        self.view.error_window.dismiss()

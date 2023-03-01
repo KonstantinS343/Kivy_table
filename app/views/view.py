@@ -1,10 +1,12 @@
 from kivymd.uix.anchorlayout import MDAnchorLayout
+import time
 
 from app.views.toolbar import tool_bar
 from app.views.table import table
 from app.views.dialog.add_student_window import add_new_student
 from app.views.dialog.filter_student_window import Filter, show_result_of_filter
 from app.views.dialog.confirm_delete_window import confirm_delete_window
+from app.views.dialog.error_view import error
 
 class View:
     def __init__(self, controller, app_object, get_all_student_function) -> None:
@@ -17,6 +19,7 @@ class View:
         self.tool_bar = tool_bar(controller, app_object)
         self.base_view = MDAnchorLayout(self.tool_bar, self.table)
         self.confirm_delete_window = None
+        self.error_window = None
     
     def open_add_student_window(self):
         self.add_dialog.open()
@@ -24,8 +27,8 @@ class View:
     def update_table(self):
         self.base_view.remove_widget(self.table)
         self.table = table(self.controller,self.get_all_student_function)
-        self.base_view.add_widget(self.table)   
-    
+        self.base_view.add_widget(self.table)
+        
     def open_filter_student_window(self):
         self.filter_student_dialog.build()
     
@@ -39,3 +42,8 @@ class View:
     def confirm_delete(self, amount_of_rows, controller):
         self.confirm_delete_window = confirm_delete_window(amount_of_rows, controller)
         self.confirm_delete_window.open()
+        
+    def error_add_student(self):
+        self.error_window = error(self.controller)
+        self.error_window.open()
+        

@@ -32,3 +32,8 @@ def handle_cancel_confirm_delete_student(controller):
     def callback(x):
         controller.close_confirm_delete_window()
     return callback 
+
+def handle_error_add_student(controller):
+    def callback(x):
+        controller.close_error_window()
+    return callback
