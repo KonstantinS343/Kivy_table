@@ -46,4 +46,4 @@
 
 Для удаление записей необходимо отметить необходимые строки и подтвердить их удаление.
 
-!['delete2.png'](https://github.com/KonstantinS343/Kivy_table/raw/master/img/delete2.png)
+!['delete.jpg'](https://github.com/KonstantinS343/Kivy_table/raw/master/img/delete.jpg)
