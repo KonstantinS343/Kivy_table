@@ -125,7 +125,6 @@ class Controller:
             self.delete_student_list.remove(current_row)
         else:
             self.delete_student_list.append(current_row)
-        print(self.delete_student_list)
         
     def confirm_delete(self):
         self.view.confirm_delete(len(self.delete_student_list), self)

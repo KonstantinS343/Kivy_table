@@ -1,11 +1,11 @@
 from typing import *
 import json
 
+from app.manage_services.parser import DomParser, read_from_xml
+
 class Model:
     def __init__(self) -> None:
-        self.__student_list: List[List] = []
-        with open('data.json', 'r') as file:
-             self.__student_list = json.load(file)
+        self.__student_list: List[List] = read_from_xml()
     
     def add_to_student_list(self, student_data):
         object = StudentModel()
@@ -24,15 +24,13 @@ class Model:
         return self.__student_list
     
     def save(self):
-        with open('data.json', 'w') as file:
-            json.dump(self.__student_list,file,ensure_ascii=False)
+        DomParser(self.__student_list).write_in_xml()
     
     def delete(self, delete_template):
         self.__student_list[:] = [i for i in self.__student_list if self.__student_list.index(i) not in delete_template]
         self.view.update_table()
-        with open('data.json', 'w') as file:
-           json.dump(self.__student_list,file,ensure_ascii=False)
-        
+        DomParser(self.__student_list).write_in_xml()
+
     def init_view(self, view):
         self.view = view
 
