@@ -1,5 +1,4 @@
 from typing import *
-import json
 
 from app.manage_services.parser import DomParser, read_from_xml
 
@@ -15,9 +14,12 @@ class Model:
                                 student_data['all_work'],
                                 student_data['do_work'],
                                 student_data['lang'])
-        self.__student_list.append(object.create_data_for_table())
-        self.save()
-        self.view.update_table()
+        if object.create_data_for_table() not in self.__student_list:
+            self.__student_list.append(object.create_data_for_table())
+            self.save()
+            self.view.update_table()
+        else:
+            self.view.error_add_student()
         
     @property
     def student_list(self):

@@ -5,7 +5,7 @@ def handle_add_new_student(controller):
 
 def hadle_cancel_add_new_student(controller):
     def callback(x):
-        controller.close_window()
+        controller.close_add_window()
     return callback
 
 def handle_filter_student(controller):
