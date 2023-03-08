@@ -29,7 +29,8 @@ class Model:
         DomParser(self.__student_list).write_in_xml()
     
     def delete(self, delete_template):
-        self.__student_list[:] = [i for i in self.__student_list if self.__student_list.index(i) not in delete_template]
+        for i in delete_template:
+            del self.__student_list[i]
         self.view.update_table()
         DomParser(self.__student_list).write_in_xml()
 
