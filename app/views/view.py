@@ -12,16 +12,12 @@ class View:
     def __init__(self, controller, app_object, get_all_student_function) -> None:
         self.controller = controller
         self.get_all_student_function = get_all_student_function
-        self.temp_filter_window = None
-        self.add_dialog = add_new_student(controller)
-        self.filter_student_dialog = Filter(controller)
         self.table = table(controller, get_all_student_function)
         self.tool_bar = tool_bar(controller, app_object)
         self.base_view = MDAnchorLayout(self.tool_bar, self.table)
-        self.confirm_delete_window = None
-        self.error_window = None
     
     def open_add_student_window(self):
+        self.add_dialog = add_new_student(self.controller)
         self.add_dialog.open()
         
     def update_table(self):
@@ -30,6 +26,7 @@ class View:
         self.base_view.add_widget(self.table)
         
     def open_filter_student_window(self):
+        self.filter_student_dialog = Filter(self.controller)
         self.filter_student_dialog.build()
     
     def close_filter_window(self):
