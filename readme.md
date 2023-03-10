@@ -1,6 +1,6 @@
 ## **Установка необходимых зависимостей**
 
-    pip install kivymd
+    pip install kivymd 
 
 ## **Описание проекта**
 
