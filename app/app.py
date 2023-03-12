@@ -13,7 +13,7 @@ class App(MDApp):
     
     def build(self):
         self.theme_cls.theme_style_switch_animation = True
-        self.theme_cls.theme_style_switch_animation_duration = 0.1
+        self.theme_cls.theme_style_switch_animation_duration = 0.2
         controller = Controller(self)
         return controller.get_root_view()
     
